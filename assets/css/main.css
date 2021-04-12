@@ -1,0 +1,54 @@
+
+/*estilos del principales*/
+h1, label {
+    color: #434342 !important;
+}
+
+.btn-view {
+    background-color: #D8D8D8;
+} 
+
+.marco {
+    padding: 20px 15px 10px 15px; 
+    background-color: #D8D8D8;
+}
+
+.marco span {
+    display: flex;
+    align-items: center;
+}
+
+.marco-interior {
+    z-index: -1;
+    background-color: #ffff;
+}
+
+/*estilos menu - */
+.menu {
+    border: 1px solid black;
+    margin: 10px 20px 10px 20px;
+}
+
+.menu ul {
+    margin: 0;
+}
+
+.menu ul li {
+    list-style: none;
+    margin: 0;
+    font-size: 20px;
+    color: grey;
+}
+
+.menu ul li a {
+    font-size: 20px;
+    color: grey;
+    text-decoration: none;
+}
+
+/* view de resultado */
+.marco-view {
+    background-color: #D8D8D8;
+    text-align: center;
+    height: auto;
+}
