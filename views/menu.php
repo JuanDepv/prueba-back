@@ -41,7 +41,7 @@
                                 <ul>
                                     <li>4- <a href="<?php echo BASE_URL ?>Module/sqlDepartaments">Sql Departamentos</a></li>
                                     <li>5- <a href="<?php echo BASE_URL ?>Module/sqlJsonEmpleyees">Sql -> Json</a></li>
-                                    <li>6- <a href="<?php echo BASE_URL ?>Module/histograma">Sql -> trigger</a></li>
+                                    <li>6- <a href="<?php echo BASE_URL ?>Module/trigger">Sql -> trigger</a></li>
                                     <li>7- <a href="<?php echo BASE_URL ?>Module/histograma">Sql -> Json</a></li>
                                 </ul>
                             </div>

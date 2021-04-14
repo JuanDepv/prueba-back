@@ -17,10 +17,11 @@ class FacadeController
 
         // redirecciona la ruta - al ingresar a la app
         if (empty($url[0])) {
-            $archivoController = 'modules/ModuleController.php';
-            require_once $archivoController;
-            $controller = new Module();
-            $controller->menu();
+            // $archivoController = 'modules/ModuleController.php';
+            // require_once $archivoController;
+            // $controller = new Module();
+            // $controller->menu();
+            header("Location:" . BASE_URL . "Module/menu");
             return false;
         }
 

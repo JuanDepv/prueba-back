@@ -19,7 +19,7 @@ h1, label {
 }
 
 .marco-interior {
-    z-index: -1;
+    height: 95%;
     background-color: #ffff;
 }
 

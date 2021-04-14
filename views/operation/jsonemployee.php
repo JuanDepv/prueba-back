@@ -38,14 +38,46 @@
         <div class="col-md-8">
             <div class="marco-view">
                 <span>
-                    SELECT ae.id, ae.lastname, edu.descriptions FROM `appx_employee` ae
-                    INNER JOIN appx_educationlevel edu ON edu.id = ae.educationlevel_id
-                    ORDER BY ae.lastname
+                    SELECT ae.id, ae.firstname, ad.descriptions, SUM(ae.salary) as salario FROM appx_employee as ae
+                    INNER JOIN appx_educationlevel as ad ON (ae.educationlevel_id = ad.id)
+                    INNER JOIN (SELECT id, departament_id, SUM(salary) as salario FROM appx_employee GROUP BY departament_id) AS sub ON (sub.departament_id = ae.departament_id)
+                    WHERE sub.salario > 250000
+                    GROUP BY ae.departament_id, ae.id ORDER BY ae.lastname
                 </span>
             </div>
 
             <div class="pl-5 mt-5 marco-view">
+                <div>
+                    <?php
+                    echo "<pre>";
 
+                    echo "<table class='table table-hover'>";
+                    echo "<thead>";
+                    echo "<tr>";
+                    echo "<th>id</th>";
+                    echo "<th>nombre empleado</th>";
+                    echo "<th>nivel de educación</th>";
+                    echo "</tr>";
+                    echo "</thead>";
+
+                    echo "<tbody>";
+
+                    foreach ($params["sql"] as $key => $value) {
+                        echo "<tr>";
+                        echo "<td>" . $value["id"] . "</td>";
+                        echo "<td>" . $value["lastname"] . "</td>";
+                        echo "<td>" . $value["descriptions"] . "</td>";
+                        echo "</tr>";
+                    }
+                    echo "</tbody>";
+                    echo "</table>";
+
+                    echo "</pre>";
+                    ?>
+                </div>
+            </div>
+
+            <div class="pl-5 mt-5 marco-view">
                 <div>
                     <?php
                     echo "<pre>";

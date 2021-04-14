@@ -1,7 +1,7 @@
 <?php
 
 require_once "./core/View.php";
-require_once "./models/Departamentos.php";
+require_once "./models/EmployeesModel.php";
 
 class Module
 {
@@ -38,8 +38,8 @@ class Module
 
     public function sqlDepartaments()
     {
-        $departament = new Departamentos();
-        $sql_departament = $departament->getDepartaments();
+        $empleyees = new EmployeesModel();
+        $sql_departament = $empleyees->getDepartaments();
         $this->views->render("operation/departaments", [
             "sql" => $sql_departament,
         ]);
@@ -47,10 +47,22 @@ class Module
 
     public function sqlJsonEmpleyees()
     {
-        $departament = new Departamentos();
-        $sql_employee = $departament->getEmployees();
+        $empleyees = new EmployeesModel();
+        $sql_employee = $empleyees->getEmployees();
         $this->views->render("operation/jsonemployee",  [
             "sql" => $sql_employee
+        ]);
+    }
+
+    public function trigger()
+    {
+        $empleyees = new EmployeesModel();
+        $departament = $empleyees->getDepartamentCurrent();
+        $education_level = $empleyees->getEducationLevel();
+
+        $this->views->render("operation/employee_trigger",  [
+            "educations" => $education_level,
+            "departaments" => $departament
         ]);
     }
 }
