@@ -20,6 +20,8 @@ h1, label {
 
 .marco-interior {
     height: 60vh;
+    min-height: 350px;
+    max-height: 400px;
     background-color: #ffff;
 }
 

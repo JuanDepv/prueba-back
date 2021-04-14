@@ -118,6 +118,7 @@ class EmployeesModel
             if ($stmt->execute()) {
                 $response["success"] = true;
             } else {
+                $response["error"] = false;
             }
         } catch (PDOException $e) {
             echo "error-> " . $e->getMessage();

@@ -34,6 +34,9 @@
             </div>
 
             <div class="pl-5 mt-5 marco-view">
+
+                <span>"$array = array(1, 3, 2, 4, 5, 1, 1, 1, 4, 5)"</span>
+                <br/>
                 <?php
                 // arreglo de 10 posiciones (numeros del 1 al 5)
                 $array = array(1, 3, 2, 4, 5, 1, 1, 1, 4, 5);

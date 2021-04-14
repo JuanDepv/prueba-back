@@ -56,6 +56,11 @@ class Module
 
     public function trigger()
     {
+        if(isset($_POST)) {
+            var_dump($_POST);
+        }
+
+
         $empleyees = new EmployeesModel();
         $departament = $empleyees->getDepartamentCurrent();
         $education_level = $empleyees->getEducationLevel();
