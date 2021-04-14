@@ -22,6 +22,3 @@ class DataBase
         return $this->conn;
     }
 }
-
-$db = new DataBase();
-var_dump($db->getConnection());
