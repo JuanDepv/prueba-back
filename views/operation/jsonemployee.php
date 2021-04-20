@@ -8,7 +8,7 @@
 
     <a class="btn btn-view" href="<?php echo BASE_URL ?>Module/menu">Volver</a>
 
-    <h2 class="mt-3">SQL Json</h2>
+    <h2 class="mt-3">SQL Json 1</h2>
 
     <div class="row">
         <div class="col-md-4">

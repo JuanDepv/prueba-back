@@ -4,9 +4,7 @@ require_once "./config/DataBase.php";
 
 class EmployeesModel
 {
-    public function ___construct()
-    {
-    }
+    public function ___construct() {}
 
     public function getEducationLevel()
     {
@@ -109,7 +107,7 @@ class EmployeesModel
             $sql .= "VALUES(:firstname, :lastname, :departament_id, :salary, :educationlevel_id) ";
 
             $stmt = $db->getConnection()->prepare($sql);
-            $stmt->bindParam(":firstname", $data["firstmane"], PDO::PARAM_STR);
+            $stmt->bindParam(":firstname", $data["firstname"], PDO::PARAM_STR);
             $stmt->bindParam(":lastname", $data["lastname"], PDO::PARAM_STR);
             $stmt->bindParam(":departament_id", $data["departament_id"], PDO::PARAM_INT);
             $stmt->bindParam(":salary", $data["salary"], PDO::PARAM_INT);
@@ -119,6 +117,30 @@ class EmployeesModel
                 $response["success"] = true;
             } else {
                 $response["error"] = false;
+            }
+        } catch (PDOException $e) {
+            echo "error-> " . $e->getMessage();
+        }
+    }
+
+    public function employees()
+    {
+        $db = new DataBase();
+        $sql = "";
+        try {
+            $sql .= "SELECT ae.firstname, ae.lastname, ad.departament_name, ae.salary, aed.descriptions FROM appx_employee ae ";
+            $sql .= "INNER JOIN appx_educationlevel as aed ON (ae.educationlevel_id = aed.id) ";
+            $sql .= "INNER JOIN appx_departament ad ON (ae.departament_id = ad.id) ";
+            $sql .= "ORDER BY ae.firstname";
+
+            $stmt = $db->getConnection()->prepare($sql);
+
+            if ($stmt->execute()) {
+                if ($stmt->rowCount() > 0) {
+                    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+                } else {
+                    return array();
+                }
             }
         } catch (PDOException $e) {
             echo "error-> " . $e->getMessage();

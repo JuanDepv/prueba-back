@@ -15,7 +15,7 @@
                     palabra “ale”.
                 </p>
 
-                <form action="<?php echo BASE_URL ?>Module/lax" method="post">
+                <form action="<?php echo BASE_URL ?>Module/trigger" method="post">
                     <div class="form-group">
                         <label for="">firstname</label>
                         <input type="text" name="firstname" id="firstname" class="form-control">
@@ -28,6 +28,7 @@
                     <div class="form-group">
                         <label for="">departaments</label>
                         <select name="departament_id" id="departament_id" class="form-control">
+                            <option value=""> Seleccione... </option>
                             <?php foreach ($params["departaments"] as $key => $value) : ?>
                                 <option value="<?= $value["id"] ?>"> <?= $value["departament_name"] ?> </option>
                             <?php endforeach; ?>
@@ -41,7 +42,8 @@
 
                     <div class="form-group">
                         <label for="">educationlevel</label>
-                        <select name="departament_id" id="" class="form-control">
+                        <select name="education_id" id="" class="form-control">
+                            <option value=""> Seleccione... </option>
                             <?php foreach ($params["educations"] as $key => $value) : ?>
                                 <option value="<?= $value["id"] ?>"> <?= $value["descriptions"] ?> </option>
                             <?php endforeach; ?>
@@ -53,26 +55,77 @@
         </div>
 
         <div class="col-md-7">
+            <div class="pl-5 mb-3 marco-view">
+                <div>
+                    <?php if (!$validation) : ?>
+                        <div class='alert alert-danger' role='alert'>
+                            campos vacios...
+                        </div>
+                    <?php else : ?>
+                        <div class='alert alert-success' role='alert'>
+                            datos insertados...
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+
             <div class="marco-view">
-                <div class='alert alert-danger' role='alert'>
-                    Prueba No superada.... - con la creacion del trigger
-                </div>
+                <pre>
+                    DELIMITER //
+                    CREATE TRIGGER `appx_employee_nw` 
+                    BEFORE INSERT ON `appx_employee` 
+                    FOR EACH ROW 
+                    BEGIN
+                    IF NEW.firstname LIKE '%ale%' THEN
+                        SET NEW.salary = 908.456;
+                    END IF;
+
+                    END//
+                    DELIMITER ;
+                </pre>
             </div>
 
-            <div class="pl-5 mt-5 marco-view">
+            <div class=" marco-view">
                 <div>
                     <?php
+                    echo "<pre>";
 
+                    echo "<table class='table table-hover'>";
+                    echo "<thead>";
+                    echo "<tr>";
+                    echo "<th>firstname</th>";
+                    echo "<th>lastname</th>";
+                    echo "<th>departament</th>";
+                    echo "<th>salary</th>";
+                    echo "<th>education</th>";
+                    echo "</tr>";
+                    echo "</thead>";
+                    echo "<tbody>";
+                    foreach ($employees as $key => $value) {
+                        echo "<tr>";
+                        echo "<td>" . $value["firstname"] . "</td>";
+                        echo "<td>" . $value["lastname"] . "</td>";
+                        echo "<td>" . $value["departament_name"] . "</td>";
+                        echo "<td>" . $value["salary"] . "</td>";
+                        echo "<td>" . $value["descriptions"] . "</td>";
+                        echo "</tr>";
+                    }
+                    echo "</tbody>";
+                    echo "</table>";
+
+                    echo "</pre>";
                     ?>
                 </div>
             </div>
 
-
-            <div class="pl-5 mt-5 marco-view">
-                <div>
-                    <?php
-                    ?>
-                </div>
+            <div class=" marco-view">
+                <?php
+                    echo "<pre>";
+                    echo json_encode([
+                        "employees" => $employees
+                    ]);
+                    echo "</pre>";
+                ?>
             </div>
         </div>
     </div>

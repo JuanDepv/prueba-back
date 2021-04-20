@@ -7,7 +7,6 @@ class View
         foreach ($params as $key => $value) {
             $$key = $value;
         }
-
         require_once 'views/' . $view . '.php';
     }
 }

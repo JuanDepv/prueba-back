@@ -1,5 +1,32 @@
 <?php require_once "./views/_header.php" ?>
 
+<?php 
+
+session_start();
+$valido = 0;
+$valores = array();
+
+if (!isset($_SESSION['data'])) {
+    $_SESSION['data'] = array();
+}
+
+$valor = $_POST['valor'] ?? "";
+
+if($valor <= 5) {
+
+    if (!empty($_POST['valores'])) {
+        $valores = explode(",", $_POST['valores']);
+    } else {
+        $valores = array();
+    }
+
+    array_push($valores, $valor);
+}
+
+$_SESSION['data'] = $valores;
+
+?>
+
 <div class="container mt-4">
 
     <a class="btn btn-view" href="<?php echo BASE_URL ?>Module/menu">Volver</a>
@@ -25,17 +52,35 @@
                 los valores de cada número que visita. Así que, para el ejemplo, la ruta con
                 la menor suma sería 1,2,3</p>
 
-            <form action="" method="">
+            <form action="<?php echo BASE_URL ?>Module/matriz" method="POST">
                 <div class="form-group">
                     <label for="tamano">valores</label>
-                    <input type="text" name="tamano" id="tamano" class="form-control">
+                    <input type="text" name="valor" id="valor" class="form-control">
                 </div>
+                <input type="hidden" name="valores" value="<?php echo implode(",", $_SESSION['data']); ?>">
                 <button class="btn btn-view">Enviar</button>
             </form>
         </div>
         <div class="col-md-8">
             <div class='alert alert-danger' role='alert'>
                 Prueba No superada....
+            </div>
+
+            <div class="pl-5 mt-5 marco-view">
+
+                <!-- <span>"$array = array(1, 3, 2, 4, 5, 1, 1, 1, 4, 5)"</span> -->
+                <br/>
+                <?php
+                // arreglo de 10 posiciones (numeros del 1 al 5)
+                // $array = array(1, 3, 2, 4, 5, 1, 1, 1, 4, 5);
+                // $duplicados = array_count_values($array);
+                echo "cantidad de valores en el arreglo: " . count($valores);
+                echo "<br/> ";
+
+                for ($i=0; $i < count($valores); $i++) { 
+                    echo " ". $valores[$i];
+                }
+                ?>
             </div>
         </div>
     </div>

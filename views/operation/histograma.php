@@ -1,5 +1,32 @@
 <?php require_once "./views/_header.php" ?>
 
+<?php 
+
+session_start();
+$valido = 0;
+$valores = array();
+
+if (!isset($_SESSION['data'])) {
+    $_SESSION['data'] = array();
+}
+
+$valor = $_POST['valor'] ?? "";
+
+if($valor <= 5) {
+
+    if (!empty($_POST['valores'])) {
+        $valores = explode(",", $_POST['valores']);
+    } else {
+        $valores = array();
+    }
+
+    array_push($valores, $valor);
+}
+
+$_SESSION['data'] = $valores;
+
+?>
+
 
 <div class="container mt-4">
 
@@ -18,13 +45,14 @@
                     datos (Debe mostrar la frecuencia para todos los números del 1 al 5, incluso
                     si no están presentes en el arreglo).</p>
 
-                <!-- <form action="<?php echo BASE_URL ?>Module/histograma" method="POST">
+                <form action="<?php echo BASE_URL ?>Module/histograma" method="POST">
                     <div class="form-group">
                         <label for="tamano">valores</label>
-                        <input type="number" name="numero" id="numero" class="form-control">
+                        <input type="number" name="valor" id="valor" class="form-control">
                     </div>
+                    <input type="hidden" name="valores" value="<?php echo implode(",", $_SESSION['data']); ?>">
                     <button class="btn btn-view">Enviar</button>
-                </form> -->
+                </form>
             </div>
         </div>
         <div class="col-md-8">
@@ -35,23 +63,22 @@
 
             <div class="pl-5 mt-5 marco-view">
 
-                <span>"$array = array(1, 3, 2, 4, 5, 1, 1, 1, 4, 5)"</span>
+                <!-- <span>"$array = array(1, 3, 2, 4, 5, 1, 1, 1, 4, 5)"</span> -->
                 <br/>
                 <?php
                 // arreglo de 10 posiciones (numeros del 1 al 5)
-                $array = array(1, 3, 2, 4, 5, 1, 1, 1, 4, 5);
-                $duplicados = array_count_values($array);
+                // $array = array(1, 3, 2, 4, 5, 1, 1, 1, 4, 5);
+                // $duplicados = array_count_values($array);
 
 
-                foreach ($duplicados as $key => $value) {
-                    echo  $key . " - " . $value;
-                    echo "<br/>";
+                for ($i=0; $i < count($valores); $i++) { 
+                    echo " ". $valores[$i];
                 }
                 ?>
             </div>
 
             <div class="marco-view">
-                <span><?php print_r($duplicados) ?></span>
+                <!-- <span><?php // print_r($duplicados) ?></span> -->
             </div>
         </div>
     </div>

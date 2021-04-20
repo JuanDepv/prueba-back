@@ -40,6 +40,7 @@ CREATE TABLE `appx_departament` (
 INSERT INTO `appx_departament` (`id`, `departament_name`, `departament__city`) VALUES
 (1, 'Ingenieria', 'Medellin'),
 (2, 'Psicologia', 'Medellin');
+(3, 'Medicina', 'Bogota');
 
 -- --------------------------------------------------------
 
@@ -58,8 +59,8 @@ CREATE TABLE `appx_educationlevel` (
 
 INSERT INTO `appx_educationlevel` (`id`, `descriptions`) VALUES
 (1, 'profesional'),
-(3, 'tecnologo'),
-(4, 'bachiller');
+(2, 'tecnologo'),
+(3, 'bachiller');
 
 -- --------------------------------------------------------
 
@@ -89,12 +90,18 @@ INSERT INTO `appx_employee` (`id`, `firstname`, `lastname`, `departament_id`, `s
 --
 -- Disparadores `appx_employee`
 --
-DELIMITER $$
-CREATE TRIGGER `update_salary` AFTER INSERT ON `appx_employee` FOR EACH ROW UPDATE appx_employee
-SET appx_employee.salary = 908.526 WHERE appx_employee.firstame LIKE '%ale%'
-$$
-DELIMITER ;
+DELIMITER //
+CREATE TRIGGER `appx_employee_nw` 
+BEFORE INSERT ON `appx_employee` 
+FOR EACH ROW 
+BEGIN
+  IF NEW.firstname LIKE '%ale%' THEN
+    SET NEW.salary = 908.456;
+  END IF;
 
+END//
+DELIMITER ;
+ 
 --
 -- Índices para tablas volcadas
 --

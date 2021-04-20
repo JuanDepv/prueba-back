@@ -63,7 +63,7 @@
                     <?php
                     echo "<pre>";
                     echo json_encode([
-                        "departaments" => $params["sql"]
+                        "departaments" => $sql
                     ]);
                     echo "</pre>";
                     ?>

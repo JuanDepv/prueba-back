@@ -15,7 +15,7 @@ class FacadeController
         $url = $this->getUrl();
 
 
-        // redirecciona la ruta - al ingresar a la app
+        // redirecciona la ruta - al ingresar a la app y la url no esta ingresada
         if (empty($url[0])) {
             // $archivoController = 'modules/ModuleController.php';
             // require_once $archivoController;
