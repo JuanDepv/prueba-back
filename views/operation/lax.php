@@ -33,28 +33,29 @@ $tamanio = null;
         </div>
 
         <div class="col-md-8">
-            <div class="pl-5 mt-5 marco-view">
+            <div class="pl-5 mt-5 marco-view p-2">
 
                 <div>
                     <?php
-                    if (isset($_POST["tamanio"])) {
-                        $tamanio = $_POST["tamanio"];
-                        if (!empty($tamanio)) {
-                            for ($fila = 0; $fila < $tamanio; $fila++) {
-                                for ($columna = 0; $columna < $tamanio; $columna++) {
+                        if (isset($_POST["tamanio"])) {
+                            $tamanio = $_POST["tamanio"];
+                            if (!empty($tamanio)) {
+                                for ($fila = 0; $fila < $tamanio; $fila++) {
+                                    for ($columna = 0; $columna < $tamanio; $columna++) {
 
-                                    if ($fila == $columna || ($tamanio - $columna - 1) == $fila) {
-                                        echo "X";
-                                    } else {
-                                        echo "_";
+                                        if ($fila == $columna || ($tamanio - $columna - 1) == $fila) {
+                                            echo "X";
+                                        } else {
+                                            echo "_";
+                                        }
                                     }
+                                    echo "\n";
+                                    echo "<br>";
                                 }
-                                echo "\n";
+                            } else {
+                                echo "el dato se envio vacio!";
                             }
-                        } else {
-                            echo "el dato se envio vacio!";
                         }
-                    }
                     ?>
                 </div>
 

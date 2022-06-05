@@ -33,12 +33,12 @@
         </div>
 
         <div class="col-md-8">
-            <div class="marco-view">
+            <div class="marco-view p-4">
                 <span>
                 </span>
             </div>
 
-            <div class="pl-5 mt-5 marco-view">
+            <div class="pl-5 mt-5 marco-view p-4">
                 <div>
                     <?php
                     // echo "<pre>";
@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="pl-5 mt-5 marco-view">
+            <div class="pl-5 mt-5 marco-view p-4">
                 <div>
                     <?php
                     // echo "<pre>";

@@ -71,7 +71,6 @@ class Module
 
             if(empty($firstname) || empty($lastname) || empty($departament_i) || empty($salary) || empty($education_i)) {
                 $flag = false;
-                var_dump($flag);
             } else {
                 $data = [
                     "firstname" => $firstname,

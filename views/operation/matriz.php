@@ -1,30 +1,47 @@
 <?php require_once "./views/_header.php" ?>
 
-<?php 
-
+<?php
 session_start();
-$valido = 0;
+
+$errors = array();
 $valores = array();
+
+$valido = 0;
+$contador = 1;
+$valor = $_POST['valor'] ?? "";
 
 if (!isset($_SESSION['data'])) {
     $_SESSION['data'] = array();
 }
 
-$valor = $_POST['valor'] ?? "";
+if ($valor != "") {
+    if ($valor <= 5) {
 
-if($valor <= 5) {
+        echo "valida el dato menor o igual a cinco <br>";
 
-    if (!empty($_POST['valores'])) {
-        $valores = explode(",", $_POST['valores']);
+        if (!empty($_POST['valores'])) {
+
+            echo "valida el valores <br>";
+            $valores = explode(",", $_POST['valores']);
+        } else {
+
+            echo "vacia el valores <br>";
+            $valores = array();
+        }
+
+        array_push($valores, $valor);
+
     } else {
-        $valores = array();
+        $errors["dos"] = "dato mayor a cinco, vuelva a llenar el arreglo";
     }
-
-    array_push($valores, $valor);
+} else {
+    $errors["uno"] = "datos vacios..., ingrese un valor y vuelva y llene el arreglo";
 }
 
-$_SESSION['data'] = $valores;
 
+
+
+$_SESSION['data'] = $valores;
 ?>
 
 <div class="container mt-4">
@@ -58,7 +75,7 @@ $_SESSION['data'] = $valores;
                     <input type="text" name="valor" id="valor" class="form-control">
                 </div>
                 <input type="hidden" name="valores" value="<?php echo implode(",", $_SESSION['data']); ?>">
-                <button class="btn btn-view">Enviar</button>
+                <button class="btn btn-view mb-5">Enviar</button>
             </form>
         </div>
         <div class="col-md-8">
@@ -66,19 +83,23 @@ $_SESSION['data'] = $valores;
                 Prueba No superada....
             </div>
 
-            <div class="pl-5 mt-5 marco-view">
+            <div class="pl-5 mt-5 marco-view p-5">
 
-                <!-- <span>"$array = array(1, 3, 2, 4, 5, 1, 1, 1, 4, 5)"</span> -->
-                <br/>
+                <span>"$array = array(1, 3, 2, 4, 5, 1, 1, 1, 4, 5)"</span>
+                <br />
                 <?php
-                // arreglo de 10 posiciones (numeros del 1 al 5)
-                // $array = array(1, 3, 2, 4, 5, 1, 1, 1, 4, 5);
-                // $duplicados = array_count_values($array);
-                echo "cantidad de valores en el arreglo: " . count($valores);
-                echo "<br/> ";
 
-                for ($i=0; $i < count($valores); $i++) { 
-                    echo " ". $valores[$i];
+                if (count($valores) > 0) {
+                    for ($i = 0; $i < count($valores); $i++) {
+                        echo " " . $valores[$i];
+                    }
+                }
+
+
+                if(count($errors) > 0) {
+                    foreach ($errors as $key => $value) {
+                        echo $key." - ". $value;
+                    }
                 }
                 ?>
             </div>

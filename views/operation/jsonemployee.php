@@ -36,7 +36,7 @@
         </div>
 
         <div class="col-md-8">
-            <div class="marco-view">
+            <div class="marco-view p-5">
                 <span>
                     SELECT ae.id, ae.firstname, ad.descriptions, SUM(ae.salary) as salario FROM appx_employee as ae
                     INNER JOIN appx_educationlevel as ad ON (ae.educationlevel_id = ad.id)

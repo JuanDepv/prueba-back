@@ -18,7 +18,7 @@
         </div>
 
         <div class="col-md-8">
-            <div class="marco-view">
+            <div class="marco-view p-4">
                 <span>SELECT ap.id, ap.departament_name, COUNT(ae.id) as 'cantidad_empleados' FROM appx_departament ap
                     INNER JOIN appx_employee ae ON ae.departament_id = ap.id
                     GROUP BY ap.departament_name ASC
@@ -26,7 +26,7 @@
                 </span>
             </div>
 
-            <div class="pl-5 mt-5 marco-view">
+            <div class="pl-5 mt-5 marco-view p-5">
                 <div>
                     <?php
                     echo "<pre>";

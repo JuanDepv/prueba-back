@@ -55,10 +55,10 @@
         </div>
 
         <div class="col-md-7">
-            <div class="pl-5 mb-3 marco-view">
+            <div class="mb-3">
                 <div>
                     <?php if (!$validation) : ?>
-                        <div class='alert alert-danger' role='alert'>
+                        <div class='alert alert-danger tex-center' role='alert'>
                             campos vacios...
                         </div>
                     <?php else : ?>
@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="marco-view">
+            <div class="marco-view text-center">
                 <pre>
                     DELIMITER //
                     CREATE TRIGGER `appx_employee_nw` 
@@ -85,32 +85,32 @@
                 </pre>
             </div>
 
-            <div class=" marco-view">
+            <div class=" marco-view p-4">
                 <div>
                     <?php
                     echo "<pre>";
 
                     echo "<table class='table table-hover'>";
-                    echo "<thead>";
-                    echo "<tr>";
-                    echo "<th>firstname</th>";
-                    echo "<th>lastname</th>";
-                    echo "<th>departament</th>";
-                    echo "<th>salary</th>";
-                    echo "<th>education</th>";
-                    echo "</tr>";
-                    echo "</thead>";
-                    echo "<tbody>";
-                    foreach ($employees as $key => $value) {
-                        echo "<tr>";
-                        echo "<td>" . $value["firstname"] . "</td>";
-                        echo "<td>" . $value["lastname"] . "</td>";
-                        echo "<td>" . $value["departament_name"] . "</td>";
-                        echo "<td>" . $value["salary"] . "</td>";
-                        echo "<td>" . $value["descriptions"] . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</tbody>";
+                        echo "<thead>";
+                            echo "<tr>";
+                                echo "<th>firstname</th>";
+                                echo "<th>lastname</th>";
+                                echo "<th>departament</th>";
+                                echo "<th>salary</th>";
+                                echo "<th>education</th>";
+                            echo "</tr>";
+                        echo "</thead>";
+                        echo "<tbody>";
+                            foreach ($employees as $key => $value) {
+                                echo "<tr>";
+                                echo "<td>" . $value["firstname"] . "</td>";
+                                echo "<td>" . $value["lastname"] . "</td>";
+                                echo "<td>" . $value["departament_name"] . "</td>";
+                                echo "<td>" . $value["salary"] . "</td>";
+                                echo "<td>" . $value["descriptions"] . "</td>";
+                                echo "</tr>";
+                            }
+                        echo "</tbody>";
                     echo "</table>";
 
                     echo "</pre>";
@@ -118,7 +118,7 @@
                 </div>
             </div>
 
-            <div class=" marco-view">
+            <div class="mt-5 marco-view">
                 <?php
                     echo "<pre>";
                     echo json_encode([
